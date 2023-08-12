@@ -1,0 +1,33 @@
+{
+  "name": "elementary-storage",
+  "version": "1.0.0",
+  "description": "Basic storage for the application which leverages browsers local storage and session storage",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santosh-Punase/elementary-storage.git"
+  },
+  "keywords": [
+    "localstorage",
+    "local",
+    "storage",
+    "session",
+    "storage",
+    "sessionstorage",
+    "browser",
+    "storage",
+    "browserstorage",
+    "basic",
+    "storage",
+    "store"
+  ],
+  "author": "santosh-punase",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Santosh-Punase/elementary-storage/issues"
+  },
+  "homepage": "https://github.com/Santosh-Punase/elementary-storage#readme"
+}
