@@ -1,12 +1,12 @@
 var storage = {
-  setToStorage: function(storage, key, value, expireAt) {
-    storage[key] = JSON.stringify({ value, expireAt })
-    return storage[key]
+  setToStorage: function(_storage, key, value, expireAt) {
+    var stringifiedValue = JSON.stringify({ value, expireAt })
+    return _storage.setItem(key, stringifiedValue)
   },
-  getFromStorage: function(storage, key, defaultValue=undefined) {
-    if(storage.hasOwnProperty(key)) {
+  getFromStorage: function(_storage, key, defaultValue=undefined) {
+    if(_storage.getItem(key)) {
       try {
-        var { value, expireAt } = JSON.parse(storage[key])
+        var { value, expireAt } = JSON.parse(_storage.getItem(key))
         if(expireAt && expireAt < Date.now()) {
           return defaultValue
         }
@@ -30,6 +30,12 @@ var storage = {
   removeFromLocalStorage: function(key) {
     return localStorage.removeItem(key);
   },
+  localStorageLength: function() {
+    return localStorage.length();
+  },
+  localStorageKey: function(i) {
+    return localStorage.key(i);
+  },
 
   setToSessionStorage: function(key, value, expireAt=null) {
     return this.setToStorage(sessionStorage, key, value, expireAt)
@@ -42,6 +48,12 @@ var storage = {
   },
   removeFromSessionStorage: function(key) {
     return sessionStorage.removeItem(key);
+  },
+  sessionStorageLength: function() {
+    return sessionStorage.length();
+  },
+  sessionStorageKey: function(i) {
+    return sessionStorage.key(i);
   },
 }
 
