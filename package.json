@@ -12,18 +12,15 @@
     "url": "git+https://github.com/Santosh-Punase/elementary-storage.git"
   },
   "keywords": [
-    "localstorage",
     "local",
-    "storage",
     "session",
-    "storage",
-    "sessionstorage",
     "browser",
+    "store",
     "storage",
+    "localstorage",
+    "sessionstorage",
     "browserstorage",
-    "basic",
-    "storage",
-    "store"
+    "basic"
   ],
   "author": "santosh-punase",
   "license": "MIT",

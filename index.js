@@ -24,9 +24,6 @@ var storage = {
   getFromLocalStorage: function(key, defaultValue=undefined) {
     return this.getFromStorage(localStorage, key, defaultValue)
   },
-  clearLocalStorage: function() {
-    return localStorage.clear();
-  },
   removeFromLocalStorage: function(key) {
     return localStorage.removeItem(key);
   },
@@ -36,15 +33,15 @@ var storage = {
   localStorageKey: function(i) {
     return localStorage.key(i);
   },
+  clearLocalStorage: function() {
+    return localStorage.clear();
+  },
 
   setToSessionStorage: function(key, value, expireAt=null) {
     return this.setToStorage(sessionStorage, key, value, expireAt)
   },
-  getFromSessionStorage: function(key, defaultValue={}) {
+  getFromSessionStorage: function(key, defaultValue=undefined) {
     return this.getFromStorage(sessionStorage, key, defaultValue)
-  },
-  clearSessionStorage: function() {
-    return sessionStorage.clear();
   },
   removeFromSessionStorage: function(key) {
     return sessionStorage.removeItem(key);
@@ -54,6 +51,9 @@ var storage = {
   },
   sessionStorageKey: function(i) {
     return sessionStorage.key(i);
+  },
+  clearSessionStorage: function() {
+    return sessionStorage.clear();
   },
 }
 
