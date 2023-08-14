@@ -4,6 +4,8 @@ Basic storage for the application which leverages browsers local storage and ses
 
 [https://www.npmjs.com/package/elementary-storage](https://www.npmjs.com/package/elementary-storage)
 
+[![codecov](https://codecov.io/gh/Santosh-Punase/elementary-storage/branch/main/graph/badge.svg?token=7002E8Q22Y)](https://codecov.io/gh/Santosh-Punase/elementary-storage)
+
 # Features
 ✅ Persists data to local storage or session storage, as you needed.
 
