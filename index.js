@@ -1,21 +1,23 @@
 var storage = {
   setToStorage: function(_storage, key, value, expireAt) {
-    var stringifiedValue = JSON.stringify({ value, expireAt })
+    var stringifiedValue = JSON.stringify({ value, expireAt, updatedAt: Date.now() })
     return _storage.setItem(key, stringifiedValue)
   },
   getFromStorage: function(_storage, key, defaultValue=undefined) {
+    var defaultVal = {
+      value: defaultValue, expireAt: null, updatedAt: null
+    }
     if(_storage.getItem(key)) {
       try {
-        var { value, expireAt } = JSON.parse(_storage.getItem(key))
-        if(expireAt && expireAt < Date.now()) {
-          return defaultValue
+        var { value, expireAt=null, updatedAt=null } = JSON.parse(_storage.getItem(key))
+        if(!expireAt || expireAt > Date.now()) {
+          return { value, expireAt, updatedAt }
         }
-        return value
       } catch {
-        return defaultValue
+        return defaultVal
       }
     }
-    return defaultValue
+    return defaultVal
   },
 
   setToLocalStorage: function(key, value, expireAt=null) {
