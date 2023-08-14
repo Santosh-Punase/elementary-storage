@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js",
-    "test:watch": "mocha --watch test.js"
+    "test:watch": "mocha --watch test.js",
+    "coverage": "istanbul cover _mocha -- test.js",
+    "test-travis": "istanbul cover _mocha --report lcovonly -- test.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
   "homepage": "https://github.com/Santosh-Punase/elementary-storage#readme",
   "devDependencies": {
     "assume": "^2.3.0",
+    "istanbul": "^0.4.5",
     "mocha": "^10.2.0"
   }
 }
