@@ -1,11 +1,11 @@
 # Elementary Storage
 
-Basic storage for the application which leverages browsers local storage and session storage
+Basic storage for the application which leverages browsers local storage and session storage and provide advance feature like expiry for the data
 
 [https://www.npmjs.com/package/elementary-storage](https://www.npmjs.com/package/elementary-storage)
 
 # Features
-✅ Persists data to local storage and session storage, as you wish.
+✅ Persists data to local storage or session storage, as you needed.
 
 ✅ Provides declarative api to interact with browser storage
 
@@ -17,12 +17,12 @@ Basic storage for the application which leverages browsers local storage and ses
 # Install
 Install with npm
 ```
-npm i use-local-storage
+npm i elementary-storage
 ```
 
 Install with yarn
 ```
-yarn add use-local-storage
+yarn add elementary-storage
 ```
 
 # Test
@@ -31,15 +31,17 @@ npm run test
 ```
 
 # Basic Usage
-In its most basic form, elementary-storage just needs the Storage key you wish to use. However, it's advised that you also provide a default value as a second argument in the event that they key does not yet exist in Storage or the value is expired.
+In its most basic form, elementary-storage just needs the Storage key to get the stored data. However, it's advised that you also provide a default value as a second argument in the event that they key does not yet exist in Storage or the value is expired.
 
-The following usage will persist the username in a "name" key in Local Storage. It will have a default/initial value of an empty string "". This default value will only be used if there is no value already in Local Storage or value has expired, moreover setting the variable username to undefined will remove it from Local Storage.
+To set the value in local/session storage, elementary-storage need the key and value, However, it you wish to invalidate the value after specified time, you can provide a third argument as the expiry time. Elementary-storage will return default value or undefined, if the time has passed `expireAt` value set while storing the value.
+
+The following usage will persist the user name in a "first_name" and "last_name" key in Local Storage. It will have a default/initial value of an empty string "". This default value will only be used if there is no value already in Local Storage or value has expired.
 
 ```
 import storage from 'elementary-storage'
 
 storage.setToLocalStorage('first_name', 'John')
-storage.setToLocalStorage('last_name', 'John',1692013088585)
+storage.setToLocalStorage('last_name', 'John', 1692013088585)
 
 storage.getFromLocalStorage('first_name', '')
 storage.getFromLocalStorage('full_name', '')
