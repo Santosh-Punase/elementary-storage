@@ -43,10 +43,10 @@ import storage from 'elementary-storage'
 storage.setToLocalStorage('first_name', 'John')
 storage.setToLocalStorage('last_name', 'John', 1692013088585)
 
-storage.getFromLocalStorage('first_name', '')
-storage.getFromLocalStorage('full_name', '')
+var { value } = storage.getFromLocalStorage('first_name', '')
+var { value } = storage.getFromLocalStorage('full_name', '')
 
-storage.getFromSessionStorage('isLoggedIn', false)
+var { value, updatedAt } = storage.getFromSessionStorage('isLoggedIn', false)
 
 storage.clearLocalStorage()
 storage.clearSessionStorage()

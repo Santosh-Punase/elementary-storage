@@ -44,37 +44,43 @@ describe('storage', () => {
 
   describe('Local Storage', () => {
     it('should be able to get default value of key', () => {
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
-      assume(storage.getFromLocalStorage('name', null)).is.equal(null)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name', null).value).is.equal(null)
     })
 
+    it('should be able to set and get value of object type, without expiry date', () => {
+      storage.setToLocalStorage('name', { firstname: 'John', lastname: 'Doe' })
+
+      assume(storage.getFromLocalStorage('name').value).is.deep.equal({ firstname: 'John', lastname: 'Doe' })
+    })
+  
     it('should be able to set and get value, without expiry date', () => {
       storage.setToLocalStorage('name', 'John')
 
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
     })
 
     it('should be able to set and get value, with future expiry date', () => {
       const expireAt = Date.now() + 1000 * 60 * 3 // 3 minutes
       storage.setToLocalStorage('name', 'John', expireAt)
 
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
     })
 
     it('should be able to set value, and get after expiry date', () => {
       const expireAt = Date.now() - 1000 * 60 // expired 1 minute ago
       
       storage.setToLocalStorage('name', 'John', expireAt)
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
     })
 
     it('should be able to remove key from local storage', () => {
       storage.setToLocalStorage('name', 'John')
       
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
       storage.removeFromLocalStorage('name')
 
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
     })
 
     it('should be able to get value of key at specified index', () => {
@@ -95,37 +101,37 @@ describe('storage', () => {
 
   describe('Session Storage', () => {
     it('should be able to get default value of key', () => {
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
-      assume(storage.getFromLocalStorage('name', null)).is.equal(null)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name', null).value).is.equal(null)
     })
 
     it('should be able to set and get value, without expiry date', () => {
       storage.setToLocalStorage('name', 'John')
 
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
     })
 
     it('should be able to set and get value, with future expiry date', () => {
       const expireAt = Date.now() + 1000 * 60 * 3 // 3 minutes
       storage.setToLocalStorage('name', 'John', expireAt)
 
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
     })
 
     it('should be able to set value, and get after expiry date', () => {
       const expireAt = Date.now() - 1000 * 60 // expired 1 minute ago
       
       storage.setToLocalStorage('name', 'John', expireAt)
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
     })
 
     it('should be able to remove key from local storage', () => {
       storage.setToLocalStorage('name', 'John')
       
-      assume(storage.getFromLocalStorage('name')).is.equal('John')
+      assume(storage.getFromLocalStorage('name').value).is.equal('John')
       storage.removeFromLocalStorage('name')
 
-      assume(storage.getFromLocalStorage('name')).is.equal(undefined)
+      assume(storage.getFromLocalStorage('name').value).is.equal(undefined)
     })
 
     it('should be able to get value of key at specified index', () => {
