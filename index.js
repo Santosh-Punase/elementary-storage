@@ -1,62 +1,45 @@
-var storage = {
-  setToStorage: function(_storage, key, value, expireAt) {
-    var stringifiedValue = JSON.stringify({ value, expireAt, updatedAt: Date.now() })
-    return _storage.setItem(key, stringifiedValue)
-  },
-  getFromStorage: function(_storage, key, defaultValue=undefined) {
-    var defaultVal = {
-      value: defaultValue, expireAt: null, updatedAt: null
-    }
-    if(_storage.getItem(key)) {
-      try {
-        var { value, expireAt=null, updatedAt=null } = JSON.parse(_storage.getItem(key))
-        if(!expireAt || expireAt > Date.now()) {
-          return { value, expireAt, updatedAt }
-        }
-      } catch {
-        return defaultVal
-      }
-    }
-    return defaultVal
-  },
+const storage = require('./storage')
 
-  setToLocalStorage: function(key, value, expireAt=null) {
-    return this.setToStorage(localStorage, key, value, expireAt)
+const elementaryLocalStorage = {
+  set: function(key, value, expireAt) {
+    return storage.setToStorage(localStorage, key, value, expireAt)
   },
-  getFromLocalStorage: function(key, defaultValue=undefined) {
-    return this.getFromStorage(localStorage, key, defaultValue)
+  get: function(key, defaultValue) {
+    return storage.getFromStorage(localStorage, key, defaultValue)
   },
-  removeFromLocalStorage: function(key) {
+  remove: function(key) {
     return localStorage.removeItem(key);
   },
-  localStorageLength: function() {
-    return localStorage.length();
+  length: function() {
+    return localStorage.length;
   },
-  localStorageKey: function(i) {
+  key: function(i) {
     return localStorage.key(i);
   },
-  clearLocalStorage: function() {
+  clear: function() {
     return localStorage.clear();
   },
+}
 
-  setToSessionStorage: function(key, value, expireAt=null) {
-    return this.setToStorage(sessionStorage, key, value, expireAt)
+const elementarySessionStorage = {
+  set: function(key, value, expireAt) {
+    return storage.setToStorage(sessionStorage, key, value, expireAt)
   },
-  getFromSessionStorage: function(key, defaultValue=undefined) {
-    return this.getFromStorage(sessionStorage, key, defaultValue)
+  get: function(key, defaultValue) {
+    return storage.getFromStorage(sessionStorage, key, defaultValue)
   },
-  removeFromSessionStorage: function(key) {
+  remove: function(key) {
     return sessionStorage.removeItem(key);
   },
-  sessionStorageLength: function() {
-    return sessionStorage.length();
+  length: function() {
+    return sessionStorage.length;
   },
-  sessionStorageKey: function(i) {
+  key: function(i) {
     return sessionStorage.key(i);
   },
-  clearSessionStorage: function() {
+  clear: function() {
     return sessionStorage.clear();
   },
 }
 
-module.exports = storage
+module.exports = { elementaryLocalStorage, elementarySessionStorage }
