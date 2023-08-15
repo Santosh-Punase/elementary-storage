@@ -40,37 +40,50 @@ To set the value in local/session storage, elementary-storage need the key and v
 The following usage will persist the user name in a "first_name" and "last_name" key in Local Storage. It will have a default/initial value of an empty string "". This default value will only be used if there is no value already in Local Storage or value has expired.
 
 ```
-import storage from 'elementary-storage'
+import { elementaryLocalStorage, elementarySessionStorage } from 'elementary-storage'
 
-storage.setToLocalStorage('first_name', 'John')
-storage.setToLocalStorage('last_name', 'John', 1692013088585)
+elementaryLocalStorage.set('first_name', 'John')
+elementaryLocalStorage.set('last_name', 'John', 1692013088585)
 
-var { value } = storage.getFromLocalStorage('first_name', '')
-var { value } = storage.getFromLocalStorage('full_name', '')
+const { value } = elementaryLocalStorage.get('first_name', '')
+const { value } = elementaryLocalStorage.get('full_name', '')
 
-var { value, updatedAt } = storage.getFromSessionStorage('isLoggedIn', false)
+const { value, updatedAt } = elementarySessionStorage.get('isLoggedIn', false)
 
-storage.clearLocalStorage()
-storage.clearSessionStorage()
+elementaryLocalStorage.clear()
+elementarySessionStorage.clear()
 
 ```
 
 # API Guide
 ### Local Storage
-* storage.setToLocalStorage(key, value, expireAt=null)
-* storage.getFromLocalStorage(key, defaultValue=undefined)
-* storage.removeFromLocalStorage(key)
-* storage.localStorageLength()
-* storage.localStorageKey(keyIndex)
-* storage.clearLocalStorage()
+* elementaryLocalStorage.set(key, value, expireAt=null)
+* elementaryLocalStorage.get(key, defaultValue=undefined)
+* elementaryLocalStorage.remove(key)
+* elementaryLocalStorage.length()
+* elementaryLocalStorage.key(keyIndex)
+* elementaryLocalStorage.clear()
 
 ### Session Storage
-* storage.setToSessionStorage(key, value, expireAt=null)
-* storage.getFromSessionStorage(key, defaultValue=undefined)
-* storage.removeFromSessionStorage(key)
-* storage.sessionStorageLength()
-* storage.sessionStorageKey(keyIndex)
-* storage.clearSessionStorage()
+* elementarySessionStorage.set(key, value, expireAt=null)
+* elementarySessionStorage.get(key, defaultValue=undefined)
+* elementarySessionStorage.remove(key)
+* elementarySessionStorage.length()
+* elementarySessionStorage.key(keyIndex)
+* elementarySessionStorage.clear()
+
+
+# Typescript
+
+### Example
+```
+import { elementaryLocalStorage } from 'elementary-storage'
+
+elementaryLocalStorage.set<string>('first_name', 'John')
+const { value } = elementaryLocalStorage.get<string>('first_name')
+const { value } = elementarySessionStorage.get<boolean>('isLoggedIn', false)
+```
+
 
 # License
 MIT
