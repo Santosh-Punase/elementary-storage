@@ -7,6 +7,9 @@ const elementaryLocalStorage = {
   get: function(key, defaultValue) {
     return storage.getFromStorage(localStorage, key, defaultValue)
   },
+  getValue: function(key, defaultValue) {
+    return storage.getFromStorage(localStorage, key, defaultValue).value
+  },
   remove: function(key) {
     return localStorage.removeItem(key);
   },
@@ -27,6 +30,9 @@ const elementarySessionStorage = {
   },
   get: function(key, defaultValue) {
     return storage.getFromStorage(sessionStorage, key, defaultValue)
+  },
+  getValue: function(key, defaultValue) {
+    return storage.getFromStorage(sessionStorage, key, defaultValue).value
   },
   remove: function(key) {
     return sessionStorage.removeItem(key);

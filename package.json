@@ -1,6 +1,6 @@
 {
   "name": "elementary-storage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Basic storage for the application which leverages browsers local storage and session storage",
   "main": "index.js",
   "scripts": {

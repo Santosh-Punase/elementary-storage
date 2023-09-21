@@ -50,6 +50,8 @@ const { value } = elementaryLocalStorage.get('full_name', '')
 
 const { value, updatedAt } = elementarySessionStorage.get('isLoggedIn', false)
 
+const value = elementarySessionStorage.getValue('isLoggedIn', false)
+
 elementaryLocalStorage.clear()
 elementarySessionStorage.clear()
 
@@ -59,6 +61,7 @@ elementarySessionStorage.clear()
 ### Local Storage
 * elementaryLocalStorage.set(key, value, expireAt=null)
 * elementaryLocalStorage.get(key, defaultValue=undefined)
+* elementaryLocalStorage.getValue(key, defaultValue=undefined)
 * elementaryLocalStorage.remove(key)
 * elementaryLocalStorage.length()
 * elementaryLocalStorage.key(keyIndex)
@@ -67,6 +70,7 @@ elementarySessionStorage.clear()
 ### Session Storage
 * elementarySessionStorage.set(key, value, expireAt=null)
 * elementarySessionStorage.get(key, defaultValue=undefined)
+* elementarySessionStorage.getValue(key, defaultValue=undefined)
 * elementarySessionStorage.remove(key)
 * elementarySessionStorage.length()
 * elementarySessionStorage.key(keyIndex)
@@ -82,6 +86,8 @@ import { elementaryLocalStorage } from 'elementary-storage'
 elementaryLocalStorage.set<string>('first_name', 'John')
 const { value } = elementaryLocalStorage.get<string>('first_name')
 const { value } = elementarySessionStorage.get<boolean>('isLoggedIn', false)
+
+const value = elementarySessionStorage.getValue<boolean>('isLoggedIn', false)
 ```
 
 

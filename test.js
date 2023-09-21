@@ -46,6 +46,12 @@ describe('Local Storage', () => {
     assume(elementaryLocalStorage.get('name', null).value).is.equal(null)
   })
 
+  it('should be able to get only value of key', () => {
+    elementaryLocalStorage.set('name', 'John')
+
+    assume(elementaryLocalStorage.getValue('name')).is.equal('John')
+  })
+
   it('should be able to set and get value of object type, without expiry date', () => {
     elementaryLocalStorage.set('name', { firstname: 'John', lastname: 'Doe' })
 
@@ -107,6 +113,12 @@ describe('Session Storage', () => {
   it('should be able to get default value of key', () => {
     assume(elementarySessionStorage.get('name').value).is.equal(undefined)
     assume(elementarySessionStorage.get('name', null).value).is.equal(null)
+  })
+
+  it('should be able to get only value of key', () => {
+    elementarySessionStorage.set('name', 'John')
+
+    assume(elementarySessionStorage.getValue('name')).is.equal('John')
   })
 
   it('should be able to set and get value, without expiry date', () => {
