@@ -4,20 +4,23 @@
   "description": "Basic storage for the application which leverages browsers local storage and session storage",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js",
-    "test:watch": "mocha --watch test.js",
-    "coverage": "istanbul cover _mocha -- test.js",
-    "test-travis": "istanbul cover _mocha --report lcovonly -- test.js"
+    "test": "mocha test/*.test.js",
+    "test:watch": "mocha --watch --parallel test/*.test.js",
+    "coverage": "istanbul cover _mocha -- test/*.test.js",
+    "test-travis": "istanbul cover _mocha --report lcovonly -- test/*.test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Santosh-Punase/elementary-storage.git"
   },
+  "type": "module",
   "keywords": [
     "local",
     "session",
     "browser",
     "store",
+    "expiry",
+    "localStorageExpiry",
     "storage",
     "localstorage",
     "sessionstorage",
@@ -33,6 +36,8 @@
   "devDependencies": {
     "assume": "^2.3.0",
     "istanbul": "^0.4.5",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "nyc": "^17.1.0",
+    "sinon": "^19.0.2"
   }
 }
